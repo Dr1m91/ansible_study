@@ -10,7 +10,7 @@
 
 
    - name: echooooo
-     shell: echo Babek
+     shell: echo hello world
      run_once: true
 
 

@@ -12,7 +12,7 @@
 
   - name: n1
 
-    yum: name=biba state=latest
+    yum: name=unreacheable_package state=latest
 
     ignore_errors: yes
 
@@ -20,11 +20,11 @@
 
   - name: n2
 
-    shell: echo zdarova mujiki
+    shell: echo hello world
 
     register: results
 
-#    failed_when: "'mujiki' in results.stdout"
+#    failed_when: "'world' in results.stdout"
 
     failed_when: reults.rc == 0
 
@@ -41,4 +41,4 @@
 
   - name: n4
 
-    shell: echo zdarova mujiki
+    shell: echo hello world

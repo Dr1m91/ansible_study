@@ -25,7 +25,7 @@
     debug:
       var: output.stdout
 
-  - name: Install packaпe
+  - name: Install package
     yum: name {{ item }}
     loop:
       - curl
