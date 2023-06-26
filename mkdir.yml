@@ -4,7 +4,7 @@
 
      file:
 
-      path: /root/secret/folder1
+      path: /root/secret/folder11
 
       state: directory
 
