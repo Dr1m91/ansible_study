@@ -12,7 +12,7 @@
 
   - name: n1
 
-    yum: name=unreacheable_package state=latest
+    yum: name=unreacheable_package_test state=latest
 
     ignore_errors: yes
 
