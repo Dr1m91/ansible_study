@@ -1,0 +1,44 @@
+---
+
+- name: test Error handling in playbooks
+
+  hosts: ansible_ubuntu
+
+#  any_errors_fatal: true
+
+  become: yes
+
+  tasks:
+
+  - name: n1
+
+    yum: name=biba state=latest
+
+    ignore_errors: yes
+
+
+
+  - name: n2
+
+    shell: echo zdarova mujiki
+
+    register: results
+
+#    failed_when: "'mujiki' in results.stdout"
+
+    failed_when: reults.rc == 0
+
+  - debug:
+     var:  results
+
+  - name: n3
+
+    shell: cat /root/ansible/hosts.txt
+
+    register: results
+
+
+
+  - name: n4
+
+    shell: echo zdarova mujiki

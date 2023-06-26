@@ -1,0 +1,46 @@
+---
+
+- name: test ansible-vault
+
+  hosts: centos
+
+  become: yes
+
+  vars:
+
+    admin_password: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          32326463666364383938376537343030626366623134333264333265336364363066353334393038
+          3363613732313666386439623130643731656335656232630a386462356661663332613636306331
+          62666433643332623933623837323439326339363864343232643332366330326532373632306232
+          3636613835343135320a316461333035613663363136336439316266323761326661613962323136
+          6132
+
+
+
+
+  tasks:
+
+     - name: Install apache web server on RedHat
+
+       yum: name=httpd
+
+
+
+     - name: Create mysecret to server
+
+       copy:
+
+         dest: "/var/www/html/secret.txt"
+
+         content: |
+
+           port = 4444
+
+           log = 7days
+
+           home = /root
+
+           user = admin
+
+           password ={{ admin_password }}

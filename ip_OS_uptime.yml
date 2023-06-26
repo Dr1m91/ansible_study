@@ -1,0 +1,52 @@
+---
+
+- name: Playbook for variables
+
+  hosts: all
+
+  become: yes
+
+
+
+  vars:
+
+    message1: Hello
+
+    message2: World
+
+    secret: XHSAHHDASPLDA2
+
+  tasks:
+
+  - name: Print secret variable
+
+    debug:
+
+      var: secret
+
+  - debug:
+
+      msg:  "Secret is: {{secret}}"
+
+  - debug:
+
+      msg:  "Owner -->: {{ansible_user}}"
+  - name:
+    set_fact: full_message="{{message1 }} {{ message2}} from {{ ansible_user }}"
+
+  -  name: Check full message
+     debug:
+       var: full_message
+
+  -  name: Check OS family
+     debug:
+       msg: "OS family on this virtual machine is {{ ansible_distribution }}"
+  - name: Check IP adresses
+    debug:
+       msg: "IP address on this virtual machine is {{ ansible_all_ipv4_addresses }}"
+  - shell: uptime
+    register: results
+
+  - name: Print uptime
+    debug:
+     var: results.stdout

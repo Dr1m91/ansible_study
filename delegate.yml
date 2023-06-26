@@ -1,0 +1,29 @@
+---
+
+ - name: delegate test
+   hosts: centos
+   become: yes
+   tasks:
+
+   - name: ping test
+     ping:
+
+
+   - name: echooooo
+     shell: echo Babek
+     run_once: true
+
+
+   - name: Reboot server
+     shell: sleep 3 && reboot now
+     async: 1
+     poll: 0
+
+
+   - name: wait until my server will come up
+     wait_for:
+          host: "{{inventory_hostname}}"
+          state: started
+          delay: 5
+          timeout: 40
+     delegate_to: 127.0.0.1

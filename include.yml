@@ -1,0 +1,24 @@
+---
+
+- name: Playboy import
+
+  hosts: all
+
+  become: yes
+
+  vars:
+
+    mytext: "Zdarova"
+
+
+
+  tasks:
+
+   - name: Ping test
+     ping:
+
+   - name: Include test
+     include: mkdir.yml
+   - name: import test
+     include: create_file.yml mytext="vasgen"
+

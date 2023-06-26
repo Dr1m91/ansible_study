@@ -1,0 +1,33 @@
+---
+- name: Loop Playbook
+  hosts: centos
+  become: yes
+
+  tasks:
+
+  - name: Say hello to ALL
+    debug: msg="Hello {{ item }}"
+    loop:   #with_items
+      - "Vasya"
+      - "Vanya"
+      - "Gena"
+
+
+  - name: Loop until example
+    shell: echo -n Z >> /root/myfile_until.txt && cat /root/myfile_until.txt
+    register: output
+    delay: 2
+    retries: 10 #by default 3 times
+    until: output.stdout.find("ZZZZ") == false
+
+
+  - name: Print stdout
+    debug:
+      var: output.stdout
+
+  - name: Install packaпe
+    yum: name {{ item }}
+    loop:
+      - curl
+      - httpd
+      - net-tools
