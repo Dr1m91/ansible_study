@@ -1,6 +1,6 @@
 ---
 
-- name: install apache and upload web page
+- name: install apache and upload web page on server
 
   hosts: all
 
